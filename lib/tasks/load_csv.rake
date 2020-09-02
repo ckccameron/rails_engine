@@ -38,4 +38,6 @@ task import: :environment do
     Transaction.create(row.to_h)
     puts "Transactions table csv data setup: Successful"
   end
+
+  puts "Database data import: Successful"
 end
