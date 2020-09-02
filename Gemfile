@@ -20,7 +20,7 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'simplecov'
+  gem 'simplecov', require: false
   gem 'shoulda-matchers', '~> 3.1'
   gem 'pry'
 end
