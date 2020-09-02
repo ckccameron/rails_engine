@@ -22,7 +22,7 @@ describe Item, type: :model do
     expect(item.updated_at).to eq("2012-03-27 14:53:59 UTC")
   end
 
-  # describe "relationships" do
-  #   it {should belong_to :merchant}
-  # end
+  describe "relationships" do
+    it {should belong_to :merchant}
+  end
 end
