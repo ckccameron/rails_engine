@@ -19,6 +19,11 @@ describe InvoiceItem, type: :model do
     expect(invoice_item.quantity).to eq(2)
     expect(invoice_item.unit_price).to eq(30323)
     expect(invoice_item.created_at).to eq("2012-03-27 14:54:11 UTC")
-    expect(invoice_item.).to eq(updated_at: "2012-03-27 14:54:11 UTC")
+    expect(invoice_item.updated_at).to eq("2012-03-27 14:54:11 UTC")
+  end
+
+  describe "relationships" do
+    it {should belong_to :invoice}
+    it {should belong_to :item}
   end
 end
