@@ -17,7 +17,9 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def destroy
-    render json: ItemSerializer.new(Item.find(params[:id]))
+    # render json: ItemSerializer.new(Item.find(params[:id]))
+    # Item.delete(params[:id])
+    InvoiceItem.where(item_id: params[:id]).delete_all
     Item.delete(params[:id])
   end
 
