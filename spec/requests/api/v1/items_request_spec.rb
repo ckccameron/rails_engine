@@ -30,7 +30,7 @@ describe "Items API" do
     expect(body[:data][:id]).to eq(id.to_s)
   end
 
-  it "can create a new item" do
+  it "allows for a new item to be created" do
     create :merchant
     merchant = Merchant.last
     body = {
@@ -47,5 +47,19 @@ describe "Items API" do
     expect(response).to be_successful
     expect(new_item.name).to eq("NewItem")
     expect(new_item.description).to eq("words with some more words")
+  end
+
+  it "allows for an item to be updated" do
+    merchant = create :merchant
+    id = create(:item, merchant: merchant).id
+    old_name = Item.last.name
+
+    patch "/api/v1/items/#{id}", params: {name: "NewItem, NewName"}
+
+    item = Item.find_by(id: id)
+
+    expect(response).to be_successful
+    expect(item.name).to eq("NewItem, NewName")
+    expect(item.name).to_not eq(old_name)
   end
 end
