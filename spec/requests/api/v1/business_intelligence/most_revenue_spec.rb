@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Business Intel API" do
-  before :each do
+  it "returns merchant with most revenue" do
     customer1 = create(:customer)
     customer2 = create(:customer)
 
@@ -30,18 +30,17 @@ describe "Business Intel API" do
     transaction2 = Transaction.create!(invoice: invoice2, credit_card_number: '222222222', credit_card_expiration_date: nil, result: "success")
     transaction3 = Transaction.create!(invoice: invoice3, credit_card_number: '111111111', credit_card_expiration_date: nil, result: "success")
     transaction4 = Transaction.create!(invoice: invoice4, credit_card_number: '222222222', credit_card_expiration_date: nil, result: "success")
-  end
 
-  it "returns list of merchants determined by most revenue" do
     get "/api/v1/merchants/most_revenue?quantity=2"
 
     expect(response).to be_successful
+    expect(response.content_type).to eq("application/json")
 
     results = JSON.parse(response.body, symbolize_names: true)
 
     expect(results[:data].size).to eq(2)
-    expect(results['data'][0]['attributes']['name']).to eq(merchant3.name)
-    expect(results['data'][1]['attributes']['name']).to eq(merchant2.name)
-    expect(results[:data]).to_not include(merchant1.name)
+    expect(results[:data][0][:id]).to include(merchant3.id.to_s)
+    expect(results[:data][1][:id]).to include(merchant2.id.to_s)
+    expect(results[:data]).to_not include(merchant1.id.to_s)
   end
 end
