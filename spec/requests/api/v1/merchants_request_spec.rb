@@ -11,4 +11,13 @@ describe "Merchants API" do
     body = JSON.parse(response.body, symbolize_names: true)
     expect(body[:data].count).to eq(3)
   end
+
+  it "sends merchant based on unique id" do
+    id = create(:merchant).id
+    get "/api/v1/merchants/#{id}"
+
+    body = JSON.parse(response.body, symbolize_names: true)
+    expect(response).to be_successful
+    expect(body[:data][:id]).to eq(id.to_s)
+  end
 end
