@@ -7,6 +7,8 @@ task import: :environment do
   InvoiceItem.destroy_all
   Transaction.destroy_all
 
+  puts "All tables reset: Successful"
+
   require 'csv'
 
   CSV.foreach('./db/data/customers.csv', headers: true, header_converters: :symbol, converters: :all) do |row|
