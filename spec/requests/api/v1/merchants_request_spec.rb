@@ -23,7 +23,7 @@ describe "Merchants API" do
   end
 
   it "allows for a new merchant to be created" do
-    post '/api/v1/merchants', params: {name: "ABCMerchant123"}
+    post "/api/v1/merchants", params: {name: "ABCMerchant123"}
 
     merchant = Merchant.last
 
