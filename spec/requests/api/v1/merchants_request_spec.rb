@@ -53,5 +53,23 @@ describe "Merchants API" do
 
     expect(Merchant.count).to eq(1)
     expect{Item.find(id_1)}.to raise_error(ActiveRecord::RecordNotFound)
-   end
+  end
+
+  describe "finders" do
+    it "can return a single merchant that matches set of criteria" do
+      create(:merchant, name: "In N Out")
+      create(:merchant, name: "Chipotle")
+      create(:merchant, name: "Sabor")
+
+      get "/api/v1/merchants/find?name=in"
+
+      expect(response).to be_successful
+
+      search_body = JSON.parse(response.body, symbolize_names: true)
+      name = search_body[:data][:attributes][:name].downcase
+
+      expect(search_body[:data]).to be_a(Hash)
+      expect(name).to include("in")
+    end
+  end
 end
