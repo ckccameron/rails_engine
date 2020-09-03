@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "api relationships" do
+describe "Relationships API" do
   it "sends list of items associated with a merchant" do
     create_list(:merchant, 3)
     id_1 = Merchant.first.id
