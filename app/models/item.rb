@@ -3,4 +3,8 @@ class Item < ApplicationRecord
   has_many :invoice_items
   has_many :invoices, through: :invoice_items
 
+  def self.find_by_search_criteria(fragment)
+    Item.where("name ILIKE ?", "%#{fragment}%")
+  end
+
 end
