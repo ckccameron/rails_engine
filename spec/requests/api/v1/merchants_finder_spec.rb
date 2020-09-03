@@ -23,7 +23,7 @@ describe "Merchants API finders" do
     create(:merchant, name: "Kings & Queens")
     create(:merchant, name: "Ace of Spades")
 
-    get "/api/v1/merchants/find?name=king"
+    get "/api/v1/merchants/find_all?name=king"
 
     expect(response).to be_successful
 
