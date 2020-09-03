@@ -1,4 +1,8 @@
 class Api::V1::Merchants::FinderController < ApplicationController
+  def index
+    merchants = Merchant.find_by_search_criteria(params[:name])
+    render json: MerchantSerializer.new(merchants).serialized_json
+  end
 
   def show
     merchants = Merchant.find_by_search_criteria(params[:name]).first
