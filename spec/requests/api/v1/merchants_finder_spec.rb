@@ -17,7 +17,7 @@ describe "Merchants API finders" do
     expect(name).to include("in")
   end
 
-  xit "can return index of merchants that match search criteria" do
+  it "can return index of merchants that match search criteria" do
     create(:merchant, name: "King of Wakanda")
     create(:merchant, name: "Burger King")
     create(:merchant, name: "Kings & Queens")
@@ -32,7 +32,7 @@ describe "Merchants API finders" do
       merchant[:attributes][:name].downcase
     end
 
-    expect(search_body[:data]).to be_a(Hash)
+    expect(search_body[:data]).to be_a(Array)
     expect(names).to include("king")
     expect(names).to eq(["King of Wakanda", "Burger King", "Kings & Queens"])
     expect(names).to_not eq(["Ace of Spades"])
