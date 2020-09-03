@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Business Intel API" do
-  it "returns merchant with most revenue" do
+  it "returns merchants with most revenue" do
     customer1 = create(:customer)
     customer2 = create(:customer)
 
