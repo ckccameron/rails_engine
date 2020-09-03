@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Relationships API" do
-  it "sends list of items associated with a merchant" do
+  it "returns list of items associated with a merchant" do
     create_list(:merchant, 3)
     id_1 = Merchant.first.id
     id_2 = Merchant.last.id
@@ -29,5 +29,15 @@ describe "Relationships API" do
     id_2_items = JSON.parse(response.body, symbolize_names: true)
     expect(id_2_items[:data].count).to eq(1)
     expect(id_2_items[:data].first[:id]).to eq(last_item.id.to_s)
+  end
+
+  it "returns merchant associated with item" do
+    merchant = create(:merchant)
+    item = create(:item, merchant: merchant)
+
+    get "/api/v1/items/#{item.id}/merchant"
+
+    body = JSON.parse(response.body)
+    expect(body['data']['id']).to eq("#{merchant.id}")
   end
 end
