@@ -24,7 +24,9 @@ task import: :environment do
   end
 
   CSV.foreach('./db/data/items.csv', headers: true, header_converters: :symbol, converters: :all) do |row|
-    Item.create(row.to_h)
+    item = Item.create(row.to_h)
+    item.unit_price = (row[:unit_price] / 100.00)
+    item.save
   end
 
   CSV.foreach('./db/data/invoice_items.csv', headers: true, header_converters: :symbol, converters: :all) do |row|

@@ -6,7 +6,4 @@ class Merchant < ApplicationRecord
     Merchant.where("name ILIKE ?", "%#{fragment}%")
   end
 
-  
-
-
 end
