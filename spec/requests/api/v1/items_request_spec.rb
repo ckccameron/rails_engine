@@ -29,4 +29,23 @@ describe "Items API" do
     expect(response).to be_successful
     expect(body[:data][:id]).to eq(id.to_s)
   end
+
+  it "can create a new item" do
+    create :merchant
+    merchant = Merchant.last
+    body = {
+          name: "NewItem",
+          description: "words with some more words",
+          unit_price: 1000,
+          merchant_id: merchant.id
+        }
+
+    post "/api/v1/items", params: body
+
+    new_item = Item.last
+
+    expect(response).to be_successful
+    expect(new_item.name).to eq("NewItem")
+    expect(new_item.description).to eq("words with some more words")
+  end
 end
