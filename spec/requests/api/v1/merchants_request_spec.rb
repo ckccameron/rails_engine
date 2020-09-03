@@ -45,7 +45,7 @@ describe "Merchants API" do
     expect(merchant.name).to_not eq(old_name)
   end
 
-  it 'can destroy a merchant' do
+  it "can destroy a merchant" do
     id_1 = create(:merchant).id
     id_2 = create(:merchant).id
 

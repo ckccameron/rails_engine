@@ -62,4 +62,14 @@ describe "Items API" do
     expect(item.name).to eq("NewItem, NewName")
     expect(item.name).to_not eq(old_name)
   end
+
+  it "can destroy an item" do
+    merchant = create :merchant
+    id = create(:item, merchant: merchant).id
+    delete "/api/v1/items/#{id}"
+
+    expect(response).to be_successful
+    expect(Item.count).to eq(0)
+    expect{Item.find(id)}.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end
