@@ -7,6 +7,8 @@ Rails.application.routes.draw do
         get '/find', controller: 'finder', action: 'show'
 
         get "/most_revenue", to: 'revenue#index'
+
+        get "/most_items", to: 'items_sold#index'
       end
 
       namespace :items do
