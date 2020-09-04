@@ -36,8 +36,7 @@ RSpec.describe "Business Intel API" do
     expect(response.content_type).to eq("application/json")
 
     results = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
-    expect(results)
 
+    expect(results[:data][:attributes][:revenue]).to eq(105.0)
   end
 end
