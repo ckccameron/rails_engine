@@ -18,10 +18,10 @@ describe "Business Intel API" do
     invoice3 = Invoice.create!(customer: customer2, merchant: merchant3, status: "shipped")
 
     item_invoice1 = InvoiceItem.create!(item: item1, invoice: invoice1, quantity: 1, unit_price: item1.unit_price)
-    item_invoice2 = InvoiceItem.create!(item: item1, invoice: invoice2, quantity: 1, unit_price: item1.unit_price)
-    item_invoice3 = InvoiceItem.create!(item: item1, invoice: invoice2, quantity: 1, unit_price: item1.unit_price)
-    item_invoice4 = InvoiceItem.create!(item: item1, invoice: invoice3, quantity: 1, unit_price: item1.unit_price)
-    item_invoice5 = InvoiceItem.create!(item: item2, invoice: invoice3, quantity: 1, unit_price: item2.unit_price)
+    item_invoice2 = InvoiceItem.create!(item: item1, invoice: invoice1, quantity: 1, unit_price: item1.unit_price)
+    item_invoice3 = InvoiceItem.create!(item: item1, invoice: invoice1, quantity: 1, unit_price: item1.unit_price)
+    item_invoice4 = InvoiceItem.create!(item: item1, invoice: invoice1, quantity: 1, unit_price: item1.unit_price)
+    item_invoice5 = InvoiceItem.create!(item: item2, invoice: invoice2, quantity: 1, unit_price: item2.unit_price)
     item_invoice6 = InvoiceItem.create!(item: item3, invoice: invoice3, quantity: 1, unit_price: item3.unit_price)
     item_invoice7 = InvoiceItem.create!(item: item3, invoice: invoice3, quantity: 1, unit_price: item3.unit_price)
 
